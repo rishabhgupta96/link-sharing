@@ -81,13 +81,14 @@
          <div class="panel panel-default">
                               <div class="panel-heading">Signup</div>
                               <div class="panel-body">
-                              <g:form url="[controller:'person',action:'create']">
+                              <g:form url="[controller:'person',action:'create'] enctype="multipart/form data">
                               First Name : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "text" name="firstname" required><br><br>
                               Last Name : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type = "text" name="lastname" required><br><br>
                               Email : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "text" name="email" required><br><br>
                               Username : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type = "text" name="username" required><br><br>
                               Password : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "password" name="password" required><br><br>
                               Confirm Password :  &nbsp<input type = "password" name="confpassword" required><br><br>
+                              <input type="file" name="file">
                                <input type="Submit" value="SignUp" style="float:right;width:100px;background-color:#dcdcdc">
                               </g:form><br>
 
