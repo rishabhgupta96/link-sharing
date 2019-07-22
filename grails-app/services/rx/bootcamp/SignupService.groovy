@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class SignupService {
 
-    def serviceMethod(params) {
+    def serviceMethod(params , request) {
 
         //println "out"
 
@@ -18,6 +18,11 @@ class SignupService {
         }
         else
         {
+            print "hello"
+            def f = request.getFile('file')
+            File des = new File('/home/rishabh/a.jpeg')
+            print "hiii"
+            f.transferTo(des)
             String uname = params.username
             String fname = params.firstname
             String lname = params.lastname
@@ -28,7 +33,7 @@ class SignupService {
             Users user = new Users(username : uname , firstname : fname , lastname : lname , password : pword , admin : adm , active : act , email : email )
             user.save(failOnError : true , validate : true , flush : true)
             println "outside"
-            return 1
+            return user
         }
 
     }
@@ -49,7 +54,7 @@ class SignupService {
                 return 0
             }
             else
-                return 1
+                return Users.findByUsername(uname)
         }
     }
 

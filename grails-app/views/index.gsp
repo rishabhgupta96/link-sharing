@@ -81,16 +81,55 @@
          <div class="panel panel-default">
                               <div class="panel-heading">Signup</div>
                               <div class="panel-body">
-                              <g:form url="[controller:'person',action:'create'] enctype="multipart/form data">
-                              First Name : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "text" name="firstname" required><br><br>
-                              Last Name : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type = "text" name="lastname" required><br><br>
-                              Email : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "text" name="email" required><br><br>
-                              Username : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type = "text" name="username" required><br><br>
-                              Password : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "password" name="password" required><br><br>
-                              Confirm Password :  &nbsp<input type = "password" name="confpassword" required><br><br>
-                              <input type="file" name="file">
-                               <input type="Submit" value="SignUp" style="float:right;width:100px;background-color:#dcdcdc">
-                              </g:form><br>
+                              <g:uploadForm class="form-horizontal" controller="person" action="create" name="register-form" >
+                                                  <div class="form-group">
+                                                      <label for="firstName" class="col-sm-2 control-label">First Name</label>
+                                                      <div class="col-sm-10">
+                                                          <input type="text" class="form-control" name="firstname" id="firstName" placeholder="first name">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+                                                      <div class="col-sm-10">
+                                                          <input type="text" class="form-control" name="lastname" id="lastName" placeholder="last name">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="email" class="col-sm-2 control-label">Email</label>
+                                                      <div class="col-sm-10">
+                                                          <input type="email" class="form-control" name="email" id="email" placeholder="email">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="userName" class="col-sm-2 control-label">Username</label>
+                                                      <div class="col-sm-10">
+                                                          <input type="text" class="form-control" name="username" id="userName" placeholder="username">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="password" class="col-sm-2 control-label">Password</label>
+                                                      <div class="col-sm-10">
+                                                          <input type="password" class="form-control" name="password" id="password" placeholder="password">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="confirmPassword" class="col-sm-2 control-label">Confirm Password</label>
+                                                      <div class="col-sm-10">
+                                                          <input type="password" class="form-control" name="confpassword" id="confpassword" placeholder="confirmPassword">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="photograph" class="col-sm-2 control-label">Photograph</label>
+                                                      <div class="col-sm-10">
+                                                          <input type="file" class="form-control" id="photograph" name="file">
+                                                      </div>
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <div class="col-sm-offset-2 col-sm-10">
+                                                          <button type="submit" class="btn btn-default">Register</button>
+                                                      </div>
+                                                  </div>
+                                              </g:uploadForm><br>
 
 
 

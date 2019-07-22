@@ -14,7 +14,7 @@ class Users {
     Byte photo
 
 
-    static hasMany = [subscribe: Subscription , topic : Topic , ratings : ResourceRating , resources : Resources ,  readings: ReadingItem]
+    static hasMany = [subscribe: Subscription, topic: TopicController, ratings: ResourceRating, resources: Resources, readings: ReadingItem]
 
 
     static constraints = {

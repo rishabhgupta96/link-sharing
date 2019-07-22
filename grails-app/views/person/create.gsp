@@ -20,10 +20,10 @@
 </head>
 <body>
    <div class="container"><br>
-       <div class="panel panel-default">
+       <div class="panel panel-default" style="height:70px">
          <div class="panel-body">
            <div class="container">
-             <div class="col-md-8">
+             <div class="col-md-4">
                <h4><a href="#"><strong> <u>Link Sharing</u></strong></a></h4>
              </div>
              <div class="col-md-3">
@@ -36,16 +36,157 @@
                  </div>
                </div>
              </div>
+             <div class= "col-md-3">
+              <ul class="nav navbar-nav">
+
+                     <li><a href="" data-toggle="modal" data-target="#createtopic"  ><span class="glyphicon glyphicon-comment"></span></a></li>
+                     <li><a href="" data-toggle="modal" data-target="#sendinvitation" ><span class="glyphicon glyphicon-envelope"></span></a></li>
+                     <li><a href="" data-toggle="modal" ><span class="glyphicon glyphicon-link"></span></a></li>
+                     <li><a href="" data-toggle="modal" ><span class="glyphicon glyphicon-file"></span></a></li>
+
+                 </ul>
+
+             </div>
+
+<div class="modal fade" id="createtopic">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Create Topic</h4>
+        </div>
+        <div class="modal-body">
+        <g:form class="form-horizontal" controller="topic" action="create" name="topicCreate">
+                                         <div class="form-group">
+                                             <div class="col-sm-2 control-label">Name</div>
+                                             <div class="col-sm-10">
+                                                 <input type="text" name="topicName" placeholder="Topic Name"
+                                                              class="form-control col-sm-8" />
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <div class="col-sm-2 control-label">visibility</div>
+                                             <div class="col-sm-10">
+                                                 <g:select name="visibility" from="${['public' , 'private']}"
+                                                           class="dropdown-toggle btn btn-default col-sm-8"  />
+                                             </div>
+                                         </div>
+                                         <div class="form-group">
+                                             <div class="col-sm-offset-2 col-sm-10">
+                                                 <button type="submit" class="btn btn-default">Save</button>
+                                             </div>
+                                         </div>
+                                     </g:form>
+
+      </div>
+      </div>
+      </div></div>
+
+
+
+
+
+
+
+
+
+      <div class="modal fade" id="sendinvitation">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" >Send Invitation</h4>
+              </div>
+              <div class="modal-body">
+              <g:form class="form-horizontal" controller="topic" action="create" name="topicCreate">
+                                               <div class="form-group">
+                                                   <div class="col-sm-2 control-label">Email</div>
+                                                   <div class="col-sm-10">
+                                                       <input type="email" name="topicName" placeholder="Topic Name"
+                                                                    class="form-control col-sm-8" />
+                                                   </div>
+                                               </div>
+                                               <div class="form-group">
+                                                   <div class="col-sm-2 control-label">Topic</div>
+                                                   <div class="col-sm-10">
+                                                       <g:select name="visibility" from="${['public' , 'private']}"
+                                                                 class="dropdown-toggle btn btn-default col-sm-8"  />
+                                                   </div>
+                                               </div>
+                                               <div class="form-group">
+                                                   <div class="col-sm-offset-2 col-sm-10">
+                                                       <button type="submit" class="btn btn-default">Save</button>
+                                                   </div>
+                                               </div>
+                                           </g:form>
+
+            </div>
+            </div>
+            </div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             <div class ="col-md-2">
+             ${user.username}
+             <li class="fa fa-caret-down"  onclick="Show()"></li>
+             <ul class="nav nav-pills nav-stacked" id="drop" style="display:none">
+               <li style="height:20px"><a href="#">Profile</a></li>
+               <li style="height:20px"><a href="#">Users</a></li>
+               <li style="height:20px"><a href="#">Topics</a></li>
+               <li style="height:20px"><a href="#">Posts</a></li>
+               <li style="height:20px"><a href="">Logout</a></li>
+             </ul>
+
+             </div>
            </div>
          </div>
        </div>
-       <div class="col-md-7">
+       <div class="col-md-5">
+
+        <div class="panel panel-default">
+
+                <div class="panel-body">
+
+
+                </div>
+              </div>
+
+
        <div class="panel panel-default">
-         <div class="panel-heading">Recent shares</div>
+         <div class="panel-heading">Subscriptions</div>
          <div class="panel-body">
-         <img src="image"></img>
+          dvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv  jb jhb jb jb jh
 
          </div>
+         <div class="panel-body">
+        n knk nk nk
+
+                  </div>
        </div>
        <div class="panel panel-default">
                 <div class="panel-heading">Top posts</div>
@@ -60,48 +201,16 @@
        </div>
        <div class="col-md-5">
 
-        <div class="panel panel-default">
-                       <div class="panel-heading">Login</div>
-                       <div class="panel-body">
-                       <form>
-                       Email/Username : <input type = "text" name="username" required><br><br><br>
-                       Passowrd : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type = "password" name="password" required>
-                       </form><br>
-                       <a href="#" >Forget Password</a>
-                       <input type="Submit" value="Login" style="float:right;width:100px;background-color:#dcdcdc">
-
-
-
-
-
-
-                       </div>
-       </div>
-
-         <div class="panel panel-default">
-                              <div class="panel-heading">Signup</div>
-                              <div class="panel-body">
-                              <g:form url="[controller:'Signing',action:'signup']">
-                              First Name : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "text" name="firstname" required><br><br>
-                              Last Name : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type = "text" name="lastname" required><br><br>
-                              Email : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "text" name="email" required><br><br>
-                              Username : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type = "text" name="username" required><br><br>
-                              Password : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type = "password" name="password" required><br><br>
-                              Confirm Password :  &nbsp<input type = "password" name="confpassword" required><br><br>
-                               <input type="Submit" value="SignUp" style="float:right;width:100px;background-color:#dcdcdc">
-                              </g:form><br>
-
-
-
-
-
-
-
-
-                              </div>
+        </div>
               </div>
 
        </div>
 
 </body>
+<script>
+function Show()
+{
+document.getElementById("drop").style.display="block";
+}
+</script>
 </html>

@@ -3,11 +3,11 @@ package rx.bootcamp
 class Resources {
     String description
     Users owner
-    Topic topic
+    TopicController topic
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [topic : Topic , owner : Users]
+    static belongsTo = [topic: TopicController, owner: Users]
     static hasMany = [readingitem : ReadingItem , ratings : ResourceRating]
 
 
