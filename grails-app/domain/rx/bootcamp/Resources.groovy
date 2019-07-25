@@ -7,7 +7,7 @@ class Resources {
     Date dateCreated
     Date lastUpdated
 
-    static belongsTo = [topic : Topic , owner : Users]
+    static belongsTo = [topic: Topic, owner: Users]
     static hasMany = [readingitem : ReadingItem , ratings : ResourceRating]
 
 
