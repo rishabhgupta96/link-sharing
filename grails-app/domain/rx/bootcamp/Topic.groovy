@@ -4,8 +4,8 @@ class Topic {
     String name
     Date dateCreated
     Date lastUpdated
-    Users owner
-    enum VISIBILITY {PRIVATE , PUBLIC}
+
+   Visibility visibility
 
     static belongsTo = [owner : Users ]
     static hasMany = [subscription : Subscription , resources : Resources]

@@ -28,9 +28,11 @@ class PersonController {
         Users user = signupService.checkingMethod(params)
         if(user)
         {
-            session.user = user
+            session.username = user.username
+            print(session.username + "he says hi")
+            redirect(controller : "Users" , action : "dashboard")
 
-            render(view: "create" ,model : [user : user])
+
         }
         else
         {

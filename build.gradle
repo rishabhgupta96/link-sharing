@@ -48,6 +48,7 @@ dependencies {
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     compile fileTree(dir: 'lib', include: '*.jar')
     compile "org.grails.plugins:gsp:4.0.0"
+    compile 'org.grails.plugins:grails-console:2.0.0'
 }
 
 bootRun {

@@ -11,15 +11,15 @@ class Users {
     Boolean admin
     Date dateCreated
     Date lastUpdated
-    Byte photo
+    String photo
 
 
-    static hasMany = [subscribe: Subscription, topic: TopicController, ratings: ResourceRating, resources: Resources, readings: ReadingItem]
+    static hasMany = [subscribe: Subscription, topic: Topic, ratings: ResourceRating, resources: Resources, readings: ReadingItem]
 
 
     static constraints = {
         username nullable: false, unique: true
-        email email: true
+        email email: true , unique:true
         photo nullable : true
     }
 }

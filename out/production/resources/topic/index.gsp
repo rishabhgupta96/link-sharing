@@ -41,7 +41,7 @@
 
                      <li><a href="" data-toggle="modal" data-target="#createtopic"  ><span class="glyphicon glyphicon-comment"></span></a></li>
                      <li><a href="" data-toggle="modal" data-target="#sendinvitation" ><span class="glyphicon glyphicon-envelope"></span></a></li>
-                     <li><a href="" data-toggle="modal" ><span class="glyphicon glyphicon-link"></span></a></li>
+                     <li><a href="" data-toggle="modal" data-target="#createLink" ><span class="glyphicon glyphicon-link"></span></a></li>
                      <li><a href="" data-toggle="modal" ><span class="glyphicon glyphicon-file"></span></a></li>
 
                  </ul>
@@ -152,7 +152,7 @@
 
 
              <div class ="col-md-2">
-             ${user.username}
+
              <li class="fa fa-caret-down"  onclick="Show()"></li>
              <ul class="nav nav-pills nav-stacked" id="drop" style="display:none">
                <li style="height:20px"><a href="#">Profile</a></li>
@@ -168,37 +168,135 @@
        </div>
        <div class="col-md-5">
 
-        <div class="panel panel-default">
-
-                <div class="panel-body">
-
-
-                </div>
-              </div>
-
 
        <div class="panel panel-default">
-         <div class="panel-heading">Subscriptions</div>
-         <div class="panel-body">
-          dvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv  jb jhb jb jb jh
+       <div class="panel-heading">${subs.topic.name}</div>
 
-         </div>
-         <div class="panel-body">
-        n knk nk nk
+                       <div class="panel-body">
+                       <div class="col-md-3">
+                       <g:img uri=""/></div>
+                       <div class="col-md-9">
+                       <div style="font-size:23px;"><b style="text-transform: uppercase">${subs.topic.name}</b>(${subs.topic.visibility})</div>
+                       <div>@${subs.topic.owner.username}</div>
 
-                  </div>
+                       <div class="col-md-6">
+                       Subscriptions:
+                       <div>${subscount}</div></div>
+                           <div class="col-md-6">
+
+                       Posts:
+                       <div><a>${postcount}</a></div></div>
+                       </div>
+                       <div class="row">
+                       <div class="col-md-5">
+                       <a>Unsubscribe</a></div>
+                       <div class="col-md-7">
+                        <g:form controller="subscription" action="updateSerious">
+                                               <g:field type="hidden" name="id" value="${subs.topic.id}"></g:field>
+                                               <g:select onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                                   value="${subs.seriousness}" />
+                                                                                                           </g:form></div></div>
+
+
+                       </div>
+
+
+
+                        </div>
+
+
+                       <div class="panel panel-default">
+                                 <div class="panel-heading"><div style="float:left">Users : ${subs.topic.name}</div>
+                                 <div style="margin-left:350px">View all</div>
+                                 </div>
+                                 <div class="panel-body">
+                                  <g:each in="${subscription}" var="us" status="i">
+                                      <li>
+                                      <div class="row">
+                                          <div class="col-md-4">
+                                                          <asset:image src="images.jpeg" style="width:60px;height:60px"/></div>
+                                                          <div class="col-sm-8">
+                                                          <div style="font-size:23px;"><b style="text-transform: uppercase">${us.user.firstname}&nbsp${us.user.lastname} </b></div>
+
+                                                          <div>@${us.user.username}</div>
+
+                                                          <div class="col-sm-6">
+                                                          Subscriptions:
+                                                          <div>${subscriptioncount.getAt(i)}</div></div>
+                                                              <div class="col-sm-6">
+
+                                                          Topics:
+                                                          <div><a>${postscount.getAt(i)}</a></div></div>
+
+                                                          <a>Unsubscribe</a></div></div>
+
+                                      </li>
+                                  </g:each>
+
+
+                                 </div>
+
+                               </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       </div>
+
+
+
+
+
+       <div class="modal fade" id="createLink" tabindex="-1" role="dialog" aria-labelledby="createLink">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                       <h4 class="modal-title" id="myModalLabel">Create Link</h4>
+                   </div>
+                   <div class="modal-body">
+                       <g:form class="form-horizontal" controller="Resource" action="save">
+                           <div class="form-group">
+                               <label for="link" class="col-sm-2 control-label">Link</label>
+                               <div class="col-sm-10">
+                                   <g:field type="url" class="form-control col-sm-8" name="url"/>
+                               </div>
+                           </div>
+                           <div class="form-group">
+                               <label for="description" class="col-sm-2 control-label">Description</label>
+                               <div class="col-sm-10">
+                                   <g:textArea name="description" class="col-sm-8 form-control"/>
+                               </div>
+                           </div>
+
+                           <div class="form-group">
+                               <div class="col-sm-offset-2 col-sm-10">
+                                   <button type="submit" class="btn btn-default">Save</button>
+                               </div>
+                           </div>
+                       </g:form>
+                   </div>
+               </div>
+           </div>
        </div>
-       <div class="panel panel-default">
-                <div class="panel-heading">Top posts</div>
-                <div class="panel-body">Panel Content</div>
 
 
 
 
-
-              </div>
-
-       </div>
        <div class="col-md-5">
 
         </div>
