@@ -6,6 +6,7 @@ class ResourceRating {
     Users owner
     int rating
 
+
     static belongsTo = [owner : Users , resource : Resources]
 
     static constraints = {

@@ -50,6 +50,7 @@ grails {
                 }
             }
         }
+
         types {
             all = '*/*'
             atom = 'application/atom+xml'
@@ -78,6 +79,16 @@ grails {
                 'application/xml'
             ]
         }
+    }
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        username = "grishabh74@gmail.com"
+        password = "21081996"
+        props = ["mail.smtp.auth":"true",
+                 "mail.smtp.socketFactory.port":"465",
+                 "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback":"false"]
     }
     urlmapping {
         cache {
@@ -171,3 +182,8 @@ environments {
         }
     }
 }
+
+
+
+
+

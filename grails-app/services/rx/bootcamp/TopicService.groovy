@@ -25,8 +25,7 @@ class TopicService {
                         inList('id',userslist)
                     }
                 }
-        println "@@@@@@@@@@@"
-            print usercounts
+
         List <Integer> counts=userslist.collect{ x ->
             usercounts.find{
                 if (it.getAt(1)==x)
@@ -66,4 +65,46 @@ class TopicService {
         return topiccount
 
     }
+        def showListMethod()
+        {
+            List<Topic> topicList = Topic.createCriteria().list{
+                eq('visibility' , Visibility.PUBLIC)
+                order("name" , "asc")
+            }
+            return topicList
+        }
+    def createMethod(params,String username)
+    {
+
+        Users createdBy = Users.findByUsername(username)
+        List <String> topicNames=Topic.createCriteria().list{
+            eq("owner.id",createdBy.id)
+        }.collect{it.name}
+        if(topicNames.contains(params.topicName))
+            return 0
+
+        Topic topic = new Topic(name: params.topicName, visibility: params.visibility)
+        createdBy.addToTopic(topic)
+        topic.save(flush:true , failOnError : true)
+
+        Subscription sub=new Subscription("seriousness" : Seriousness.VERY_SERIOUS)
+
+
+        //createdBy.save(flush:true , failOnError : true)
+
+        createdBy.addToSubscribe(sub)
+        topic.addToSubscription(sub)
+
+        createdBy.save(flush:true , failOnError : true)
+        return 1
+    }
+    def updateMethod(params)
+    {
+        Topic topic=Topic.get(Long.parseLong(params.id))
+
+        topic.name=params.name
+        topic.save()
+    }
+
+
 }

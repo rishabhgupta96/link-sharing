@@ -6,22 +6,23 @@ import grails.transaction.Transactional
 class UserService {
 
 
-    def subscriptions(String username) {
+    def subscriptionswithdate(String username) {
         Users user = Users.findByUsername(username)
+        if(user){
 
         List<Long> subscriptionList = Subscription.createCriteria().list {
             eq("user.id", user.id)
         }
+            subscriptionList.sort { b, a -> a.topic.lastUpdated <=> b.topic.lastUpdated }
 
-
-        //print subscriptionList
-        subscriptionList.sort { b, a -> a.topic.lastUpdated <=> b.topic.lastUpdated }
-        //print subscriptionList
-        return subscriptionList
+        return subscriptionList}
+        return null
 
     }
 
     def subscriptioncount(List topicids) {
+        if(topicids){
+
         def topiccounts = Subscription.createCriteria().list()
                 {
                     projections {
@@ -43,8 +44,11 @@ class UserService {
         }.collect { it.getAt(0) }
         return counts
     }
+        return null
+    }
 
     def postscount(List topicids) {
+        if(topicids){
         def rescounts = Resources.createCriteria().list()
                 {
                     projections {
@@ -71,21 +75,21 @@ class UserService {
                 it.getAt(0)
         }
 
-        println resourcecount
-        println "aaaaaaaaaaaaaaaaaa"
-        println topicids
 
 
-        return resourcecount
+        return resourcecount}
+        return null
 
     }
 
     def trendtopics() {
-        List<Long> topicsid = Topic.list().collect {
+        List<Long> topicsid = Topic.createCriteria().list{
+            eq('visibility' , Visibility.PUBLIC )
+        }.collect {
             it.id
         }
 
-        List abcd = Resources.createCriteria().list(max: 5)
+        List trendingtopics = Resources.createCriteria().list()
                 {
                     projections {
                         count('topic.id')
@@ -96,31 +100,86 @@ class UserService {
 
                 }
 
-        abcd.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
+        trendingtopics.sort { b, a -> a.getAt(0) <=> b.getAt(0) }
 
-        List<Integer> xyz = topicsid.collect { x ->
-            abcd.find {
 
-                if (it.getAt(1) == x)
-                    return it.getAt(0)
-                else
-                    return 0
-
-            }
-
-        }.collect {
+        List<Integer> trending = trendingtopics.collect {
             if (!it)
                 return 0
             else
                 it.getAt(1)
         }
-        xyz.removeAll { it == 0 }
-        List bbb = xyz + (topicsid - xyz)
-        List<Topic> topicstrendy = Topic.createCriteria().list {
-            inList('id', bbb)
+        trending=trending+(topicsid-trending)
 
-
+        ArrayList answer=new ArrayList()
+        int i=0;
+        while(i<5 && trending.size()>i)
+        {
+            answer.add(trending.get(i))
+            i++
         }
-        return topicstrendy
+
+
+        return answer
+    }
+
+    def subscription(String username) {
+        Users user = Users.findByUsername(username)
+
+        List<Long> subscriptionList = Subscription.createCriteria().list {
+            eq("user.id", user.id)
+        }
+
+        return subscriptionList
+
+    }
+    def updateMethod(params,request,String username)
+    {
+        Users user=Users.findByUsername(username)
+        if(params.firstname)
+        user.firstname=params.firstname
+        if(params.lastname)
+        user.lastname=params.lastname
+        if(params.username)
+        user.username=params.username
+       def f = request.getFile('photo')
+        String filename= f.getOriginalFilename()
+
+        if(filename){
+            String image
+            String loc='/home/rishabh/rx-bootcamp/grails-app/assets/images/' + username + filename
+            File des = new File(loc)
+            image=username+filename
+            f.transferTo(des)
+            user.photo=image
+        }
+        user.save(flush:true,failOnError: true)
+
+
+
+
+    }
+    def updatepassMethod(params,String username)
+    {
+        String pword = params.password
+        String confpassword = params.confpassword
+
+        if(confpassword.compareTo(pword)!=0)
+        {
+            return 0
+        }
+        else
+        {
+            Users user=Users.findByUsername(username)
+            user.password=pword
+            user.save()
+            return 1
+        }
+
+    }
+    def showListMethod()
+    {
+        List<Users> userList = Users.list()
+        return userList
     }
 }
